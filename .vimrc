@@ -12,38 +12,40 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'Raimondi/delimitMate'
+Plugin 'scrooloose/nerdtree'
 
 call vundle#end()
 
+" SHORTCUTS
+let mapleader = "'"
+nmap <leader>ne :NERDTreeToggle<cr>
+
+" GLOBAL SPACING SETTINGS
 set tabstop=4
 set shiftwidth=4
 set expandtab
 filetype indent on
+
+" VIM UI SETTINGS
 syntax on
 set number
 set ruler
+
+" VIM COPY SETTINGS
 set clipboard=unnamed
 
-" Set up spacing for some filetypes
+" FILE SPECIFIC SPACING SETTINGS
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
 
-" Syntastic settings
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-" Use the project eslint configuration
+" SYNTASTIC SETTINGS
 let g:syntastic_javascript_eslint_exe='$(npm bin)/eslint'
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
-" Set up syntastic checkers
+" SYNTASTIC CHECKERS
 let g:syntastic_python_checkers = ['pylint']
 let g:syntastic_javascript_checkers = ['eslint']
-
-" Turn off ycm diagnostics to not interfere with Syntastic
-let g:ycm_show_diagnostics_ui = 0
 
